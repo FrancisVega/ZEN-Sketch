@@ -1,0 +1,39 @@
+// Delete empty Groups (command e)
+var doc = context.document;
+var artboard = [[doc currentPage] currentArtboard];
+var L = toJSArray(artboard.children());
+
+
+function toJSArray(arr) {
+	var len = [arr count],
+		res = [];
+	while(len--){
+    	res.push(arr[len]);
+ 	}
+ 	return res;
+}
+
+
+function deleteGroup(group) {
+    group.parentGroup().removeLayer(group);
+}
+
+
+function deleteEmptyGroups(tree) {
+
+	for (var i=0; i<tree.length; ++i) {
+		var item = tree[i];
+		var itemClass = item.class();
+
+		if(itemClass == "MSLayerGroup" && item.layers().length() === 0) {
+            deleteGroup(item);
+			tree.splice(i,1);
+		}
+	}
+}
+
+// Borramos
+// Hacer esto con un while, por favor :(
+for (var i=0;i<99;i++){
+	deleteEmptyGroups(L);
+}
