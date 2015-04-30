@@ -1,0 +1,7 @@
+// Fit group bounding box size
+
+var sel = context.selection;
+
+for (var i=0;i<sel.length();i++) {
+	sel[i].resizeRoot(1);
+}
