@@ -1,2 +1,2 @@
 # ZEN-Sketch
-A collection of Sketch plugins
+A very personal collection of Sketch plugins
