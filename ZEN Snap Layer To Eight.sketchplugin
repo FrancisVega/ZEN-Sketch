@@ -1,17 +1,19 @@
 // (cmd + º)
-var sel = context.selection[0]
 
-function snapToEight(layer) {
-
-	x = layer.frame().x()
-	y = layer.frame().y()
-
-	newX = Math.round((x/8))*8
-	newY = Math.round((y/8))*8
-
-	layer.frame().setX(newX)
-	layer.frame().setY(newY)
-
+// Round Int near to 8 mult
+// Ej: 15 -> 16 or 25 -> 24
+function roundIntToGrid(v, n) {
+	return Math.round((v/n))*n
 }
 
-snapToEight(sel)
+// Set layer position (x,y) to eight pixel grid
+function snapToEight(layer) {
+	pixelGrid = 8
+	newX =  roundIntToGrid([[layer frame] x], pixelGrid)
+	newY =  roundIntToGrid([[layer frame] y], pixelGrid)
+	[[layer frame] setX:newX]
+	[[layer frame] setY:newY]
+}
+
+// Do it!
+snapToEight(context.selection[0])
