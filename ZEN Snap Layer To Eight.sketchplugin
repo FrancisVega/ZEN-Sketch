@@ -1,0 +1,17 @@
+// (cmd + º)
+var sel = context.selection[0]
+
+function snapToEight(layer) {
+
+	x = layer.frame().x()
+	y = layer.frame().y()
+
+	newX = Math.round((x/8))*8
+	newY = Math.round((y/8))*8
+
+	layer.frame().setX(newX)
+	layer.frame().setY(newY)
+
+}
+
+snapToEight(sel)
