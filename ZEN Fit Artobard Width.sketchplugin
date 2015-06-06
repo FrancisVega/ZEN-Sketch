@@ -1,0 +1,16 @@
+// (alt cmd +)
+var layers = selection
+
+for (var i=0; i<[selection count]; ++i) {
+
+	var layer = selection[i]
+
+	if ([layer class] != "MSTextLayer" && [layer class] != "MSLayerGroup") {
+		var frame = layer.frame()
+		var parent = layer.parentGroup()
+
+		frame.setX(0)
+		frame.setWidth(parent.frame().width())
+	}
+
+}
