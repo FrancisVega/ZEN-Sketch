@@ -1,11 +1,9 @@
 // (alt cmd p)
-function writeFile(filename, the_string) {
 
+function writeFile(filename, the_string) {
 	var path =[@"" stringByAppendingString: filename];
 	var str = [@"" stringByAppendingString: the_string];
-
 	str.dataUsingEncoding_(NSUTF8StringEncoding).writeToFile_atomically_(path, true)
-
 }
 
 //var documentPath = "/" //[[doc fileURL] path].split([doc displayName] + ".sketch")[0];
@@ -14,6 +12,8 @@ function writeFile(filename, the_string) {
 var doc = context.document
 var previzFolder = "/.previz";
 var path = NSHomeDirectory() + previzFolder;
+var artboardHeight = doc.currentPage().currentArtboard().frame().height()
+
 
 // PNG
 var currentArtboard = doc.currentPage().currentArtboard()
@@ -22,26 +22,33 @@ var exportImageFilePath = path + "/previz.png"
 
 
 // HTML
-var content = '<!DOCTYPE html>\
+var content = '\
+<!--\
+\
+	Browser Preview\
+	Francis Vega\
+\
+-->\
+\
+<!DOCTYPE html>\
 <html>\
-    <head>\
-    <title>Presentacion</title>\
-    <style>\
-        * {\
-            padding:0;\
-            margin:0;\
-        }\
-        div {\
-            width: 640px;\
-            margin:0 auto;\
-        }\
-    </style>\
-    </head>\
-    <body>\
-        <div>\
-            <img src=previz.png />\
-        </div>\
-    </body>\
-</html>'
+	<head>\
+	<title>Zen Previz</title>\
+	<style>\
+		* {\
+			padding:0;\
+			margin:0;\
+		}\
+		div {\
+			height:' + artboardHeight + 'px;\
+			margin:0 auto;\
+			background:url(previz.png) top center no-repeat;\
+		}\
+	</style>\
+	</head>\
+	<body>\
+	<div></div>\
+	</body>\
+</html>';
 
 writeFile(path + "/previz.html", content)
