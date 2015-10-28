@@ -20,7 +20,6 @@ var currentArtboard = doc.currentPage().currentArtboard()
 var exportImageFilePath = path + "/previz.png"
 [doc saveArtboardOrSlice:currentArtboard toFile:exportImageFilePath]
 
-
 // HTML
 var content = '<!DOCTYPE html>\
 <html>\
@@ -45,3 +44,5 @@ var content = '<!DOCTYPE html>\
 </html>'
 
 writeFile(path + "/previz.html", content)
+
+[doc showMessage: "Mobile Previz create" + path];
