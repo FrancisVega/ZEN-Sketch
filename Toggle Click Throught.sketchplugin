@@ -2,9 +2,8 @@
 @import 'common.js'
 
 var doc = context.document
-var artboard = [[doc currentPage] currentArtboard]
-var root = artboard.children()
-var groups = filterGroups(root)
+var layers = doc.currentPage().children()
+var groups = filterGroups(layers)
 
 var CT
 
@@ -18,3 +17,6 @@ for (var i=0;i<groups.length;++i) {
 	groups[i].setHasClickThrough(CT)
 
 }
+
+[doc showMessage: "Click Throught Toggled"];
+// cosa
