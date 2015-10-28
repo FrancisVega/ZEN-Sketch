@@ -52,3 +52,5 @@ var content = '\
 </html>';
 
 writeFile(path + "/previz.html", content)
+
+[doc showMessage: "Desktop Previz create" + path];
