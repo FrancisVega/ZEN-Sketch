@@ -5,15 +5,10 @@
 // 2015
 //
 
-//
-// GULP PLUGINS
-//
 // Gulp itself
 var gulp         = require('gulp');
-// General
 var rename       = require('gulp-rename');
 
-//
 // Directorios del proyecto
 //
 var dirs = {
@@ -21,7 +16,6 @@ var dirs = {
     dst: '/sketchplugins/ZEN',
 };
 
-//
 // Watch
 //
 gulp.task('watch', function(){
@@ -29,14 +23,13 @@ gulp.task('watch', function(){
 });
 
 
-//
 // Copia los plugins en la carpeta de plugins de sketch mediante el softlink
 // /sketchplugins
 //
 gulp.task('copy', function() {
-
     // Archivos en el raiz
-    gulp.src(['*.*'], {cwd: dirs.src})
+    console.log("ok");
+    gulp.src(['*.sketchplugin'], {cwd: dirs.src})
     .pipe(gulp.dest(dirs.dst));
     console.log("jandler!");
 });

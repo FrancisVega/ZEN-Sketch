@@ -17,7 +17,8 @@ var path = NSHomeDirectory() + previzFolder;
 
 // PNG
 var currentArtboard = doc.currentPage().currentArtboard()
-var exportImageFilePath = path + "/previz.png"
+var currentArtboardName = currentArtboard.name();
+var exportImageFilePath = path + "/" + currentArtboardName + ".png"
 [doc saveArtboardOrSlice:currentArtboard toFile:exportImageFilePath]
 
 // HTML
@@ -38,11 +39,10 @@ var content = '<!DOCTYPE html>\
     </head>\
     <body>\
         <div>\
-            <img src=previz.png />\
+            <img src='+ currentArtboardName +'.png />\
         </div>\
     </body>\
 </html>'
 
-writeFile(path + "/previz.html", content)
-
-[doc showMessage: "Mobile Previz create" + path];
+writeFile(path + "/" + currentArtboardName + ".html", content)
+/*[doc showMessage: "Mobile Previz create" + path];*/

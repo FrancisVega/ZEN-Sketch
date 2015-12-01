@@ -144,6 +144,9 @@ function isShape(layer){
   return is(layer, MSShapeGroup);
 }
 
+function isImageLayer(layer) {
+    return is(layer, MSBitmapLayer);
+}
 
 //--------------------------------------
 //  Adding (and removing) Different Kinds of Layers
