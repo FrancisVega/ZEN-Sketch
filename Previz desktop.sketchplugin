@@ -1,9 +1,9 @@
-// (alt cmd p)
+// (alt cmd ñ)
 
 function writeFile(filename, the_string) {
-	var path =[@"" stringByAppendingString: filename];
-	var str = [@"" stringByAppendingString: the_string];
-	str.dataUsingEncoding_(NSUTF8StringEncoding).writeToFile_atomically_(path, true)
+  var path =[@"" stringByAppendingString: filename];
+  var str = [@"" stringByAppendingString: the_string];
+  str.dataUsingEncoding_(NSUTF8StringEncoding).writeToFile_atomically_(path, true)
 }
 
 //var documentPath = "/" //[[doc fileURL] path].split([doc displayName] + ".sketch")[0];
@@ -15,41 +15,41 @@ var path = NSHomeDirectory() + previzFolder;
 var artboardHeight = doc.currentPage().currentArtboard().frame().height()
 
 
-// PNG
+  // PNG
 var currentArtboard = doc.currentPage().currentArtboard()
-var exportImageFilePath = path + "/previz.png"
-[doc saveArtboardOrSlice:currentArtboard toFile:exportImageFilePath]
+  var exportImageFilePath = path + "/previz.png"
+  [doc saveArtboardOrSlice:currentArtboard toFile:exportImageFilePath]
 
 
-// HTML
-var content = '\
-<!--\
-\
-	Browser Preview\
-	Francis Vega\
-\
--->\
-\
-<!DOCTYPE html>\
-<html>\
-	<head>\
-	<title>Zen Previz</title>\
-	<style>\
-		* {\
-			padding:0;\
-			margin:0;\
-		}\
-		div {\
-			height:' + artboardHeight + 'px;\
-			margin:0 auto;\
-			background:url(previz.png) top center no-repeat;\
-		}\
-	</style>\
-	</head>\
-	<body>\
-	<div></div>\
-	</body>\
-</html>';
+  // HTML
+  var content = '\
+                <!--\
+                \
+                Browser Preview\
+                Francis Vega\
+                \
+                -->\
+                \
+                <!DOCTYPE html>\
+                <html>\
+                <head>\
+                <title>Zen Previz</title>\
+                <style>\
+                * {\
+                  padding:0;\
+                    margin:0;\
+                }\
+                div {\
+                  height:' + artboardHeight + 'px;\
+                    margin:0 auto;\
+                    background:url(previz.png) top center no-repeat;\
+                }\
+                </style>\
+                </head>\
+                <body>\
+                <div></div>\
+                </body>\
+                </html>';
 
 writeFile(path + "/previz.html", content)
 

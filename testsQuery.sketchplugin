@@ -1,0 +1,6 @@
+// (alt cmd ç)
+
+@import 'sQuery.sketchplugin';
+
+
+$().foo())
