@@ -1,0 +1,28 @@
+// (alt cmd r)
+var doc = context.document;
+
+// Regex
+var block = /^[^__]*/g;
+
+// 
+function insertBlockName(){
+
+  // Seleccion
+  var selection = context.selection;
+
+  // Solo funciona con una capa/grupo
+  if(selection.count() == 1) {
+    // obtenemos la capa/grupo seleccinado
+    var layer = selection.firstObject();
+    // obtenemos el nombre del padre, solo el bloque.
+    var parentLayerGroupBlockName = block.exec(layer.parentGroup().name())[0];
+    // renombramos la capa/grupo seleccinado
+    layer.name = parentLayerGroupBlockName;
+  } else {
+    // Una capa solooooo!!
+    log("Selecciona solo un grupo");
+  }
+}
+
+// GO!
+insertBlockName();
