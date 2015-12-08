@@ -19,7 +19,7 @@ var dirs = {
 // Watch
 //
 gulp.task('watch', function(){
-    gulp.watch(dirs.src + '*.*', ['copy']);
+    gulp.watch(dirs.src + 'ZEN/**/*', ['copy']);
 });
 
 
@@ -28,10 +28,8 @@ gulp.task('watch', function(){
 //
 gulp.task('copy', function() {
     // Archivos en el raiz
-    console.log("ok");
-    gulp.src(['*.sketchplugin'], {cwd: dirs.src})
+    gulp.src(['ZEN/**/*'], {cwd: dirs.src})
     .pipe(gulp.dest(dirs.dst));
-    console.log("jandler!");
 });
 
 

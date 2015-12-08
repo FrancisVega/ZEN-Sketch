@@ -1,0 +1,17 @@
+// (alt cmd ç)
+
+@import 'sQuery.js';
+
+//$('%shapes%').rename("__Shapes");
+//$('%groups%').rename("jandler")
+//$('%images%').rename("klander");
+//$('%textLayer%').rename("__Text");
+//$('*').rename("CA - PA");
+//$('%selected%').rename("Estoy Seleccionada");
+
+//$('*').withName("Rectangle*")
+//
+//var sel = $('%groups%').rename("Froiland").UISelect();
+$('%selected%').brothers().rename("Hermano!!").UISelect();
+
+
