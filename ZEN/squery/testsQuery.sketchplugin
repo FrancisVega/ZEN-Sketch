@@ -9,9 +9,12 @@
 //$('*').rename("CA - PA");
 //$('%selected%').rename("Estoy Seleccionada");
 
+//
 //$('*').withName("Rectangle*")
 //
 //var sel = $('%groups%').rename("Froiland").UISelect();
-$('%selected%').brothers().rename("Hermano!!").UISelect();
+//$('%selected%').descendants().rename("----").UISelect();
 
 
+$('*').isVisible().rename("Estoy visible")
+$('*').isHidden().rename("Estoy oculta")
