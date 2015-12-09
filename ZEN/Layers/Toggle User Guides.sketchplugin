@@ -1,0 +1,6 @@
+// (cmd l)
+
+@import '../sQuery/sQuery.js';
+
+var guidesGroup = $('*').withName('Guides').getLayer();
+    guidesGroup.setIsVisible(!guidesGroup.isVisible());

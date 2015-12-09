@@ -14,7 +14,9 @@
 //
 //var sel = $('%groups%').rename("Froiland").UISelect();
 //$('%selected%').descendants().rename("----").UISelect();
+//$('*').isVisible().rename("Estoy visible")
+//$('*').isHidden().rename("Estoy oculta")
+//
+//
 
-
-$('*').isVisible().rename("Estoy visible")
-$('*').isHidden().rename("Estoy oculta")
+$('%sdfsd%')

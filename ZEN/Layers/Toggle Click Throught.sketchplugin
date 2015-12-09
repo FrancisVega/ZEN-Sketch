@@ -1,21 +1,5 @@
 // Toggle Click Through (command shift d)
-@import 'common.js'
+@import '../sQuery/sQuery.js';
 
-var doc = context.document
-var layers = doc.currentPage().children()
-var groups = filterGroups(layers)
+$('%groups%').toggleClickThrought();
 
-var CT
-
-for (var i=0;i<groups.length;++i) {
-
-	if (groups[i].hasClickThrough() == 0) {
-		CT = 1
-	} else {
-		CT = 0
-	}
-	groups[i].setHasClickThrough(CT)
-
-}
-
-[doc showMessage: "Click Throught Toggled"];
