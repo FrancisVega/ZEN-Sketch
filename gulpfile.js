@@ -9,6 +9,7 @@
 var gulp   = require('gulp');
 var rename = require('gulp-rename');
 var jshint = require('gulp-jshint');
+var plumber = require('gulp-plumber');
 // Directorios del proyecto
 //
 var dirs = {
@@ -33,7 +34,7 @@ gulp.task('copy', function() {
 });
 
 gulp.task('lint', function() {
-  return gulp.src(dirs.src + 'lib/**/*')
+  return gulp.src(dirs.src + 'ZEN/**/*.js')
     .pipe(plumber())
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
