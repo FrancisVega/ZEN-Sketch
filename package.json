@@ -18,6 +18,8 @@
   "homepage": "https://github.com/FrancisVega/ZEN-Sketch#readme",
   "devDependencies": {
     "gulp": "^3.9.0",
-    "gulp-rename": "^1.2.2"
+    "gulp-jshint": "^2.0.0",
+    "gulp-rename": "^1.2.2",
+    "jshint": "^2.8.0"
   }
 }

@@ -6,9 +6,9 @@
 //
 
 // Gulp itself
-var gulp         = require('gulp');
-var rename       = require('gulp-rename');
-
+var gulp   = require('gulp');
+var rename = require('gulp-rename');
+var jshint = require('gulp-jshint');
 // Directorios del proyecto
 //
 var dirs = {
@@ -32,6 +32,12 @@ gulp.task('copy', function() {
     .pipe(gulp.dest(dirs.dst));
 });
 
+gulp.task('lint', function() {
+  return gulp.src(dirs.src + 'lib/**/*')
+    .pipe(plumber())
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
 
 // --------------------------------------------------------------------------{{{
 // TAREAS GULP
