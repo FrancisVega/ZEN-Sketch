@@ -1,15 +1,9 @@
 // (alt cmd ñ)
 
 function writeFile(filename, the_string) {
-<<<<<<< HEAD
-    var path =[@"" stringByAppendingString: filename];
-    var str = [@"" stringByAppendingString: the_string];
-    str.dataUsingEncoding_(NSUTF8StringEncoding).writeToFile_atomically_(path, true)
-=======
   var path =[@"" stringByAppendingString: filename];
   var str = [@"" stringByAppendingString: the_string];
   str.dataUsingEncoding_(NSUTF8StringEncoding).writeToFile_atomically_(path, true)
->>>>>>> b55437f0d8c26accdd5e5ba52aab6a22ac9abec3
 }
 
 //var documentPath = "/" //[[doc fileURL] path].split([doc displayName] + ".sketch")[0];

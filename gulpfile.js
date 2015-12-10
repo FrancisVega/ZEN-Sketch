@@ -6,9 +6,9 @@
 //
 
 // Gulp itself
-var gulp         = require('gulp');
-var rename       = require('gulp-rename');
-
+var gulp   = require('gulp');
+var rename = require('gulp-rename');
+var jshint = require('gulp-jshint');
 // Directorios del proyecto
 //
 var dirs = {
@@ -19,7 +19,7 @@ var dirs = {
 // Watch
 //
 gulp.task('watch', function(){
-    gulp.watch(dirs.src + '*.*', ['copy']);
+    gulp.watch(dirs.src + 'ZEN/**/*', ['copy']);
 });
 
 
@@ -28,12 +28,16 @@ gulp.task('watch', function(){
 //
 gulp.task('copy', function() {
     // Archivos en el raiz
-    console.log("ok");
-    gulp.src(['*.sketchplugin'], {cwd: dirs.src})
+    gulp.src(['ZEN/**/*'], {cwd: dirs.src})
     .pipe(gulp.dest(dirs.dst));
-    console.log("jandler!");
 });
 
+gulp.task('lint', function() {
+  return gulp.src(dirs.src + 'lib/**/*')
+    .pipe(plumber())
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
 
 // --------------------------------------------------------------------------{{{
 // TAREAS GULP
