@@ -1,0 +1,5 @@
+// Toggle Click Through (command shift d)
+@import '../sQuery/sQuery.js';
+
+$('%groups%').toggleClickThrought();
+

@@ -1,0 +1,84 @@
+{
+  "name": "Zen Sketch",
+  "description": "A very personal plugin collection for Sketch",
+  "author": "Francis Vega",
+  "author": "hisconer@gmail.com",
+  "homepage": "https://github.com/FrancisVega/ZEN-Sketch",
+  "version": 1.1,
+  "identifier": "com.example.sketch.zen",
+  "compatibleVersion": "3.4.4",
+  "bundleVersion": 1,
+  "commands": [
+    {
+      "name": "Append Parent Block Name",
+      "identifier": "appendParentBlockName",
+      "shortcut": "alt cmd r",
+      "script": "Layer/Append-Parent-Block-Name.cocoascript"
+    },
+    {
+      "name": "Remove Empty Groups",
+      "identifier": "removeEmptyGroups",
+      "shortcut": "cmd e",
+      "script": "Layers/Remove-Empty-Groups.cocoascript"
+    },
+    {
+      "name": "Resizze Group Area",
+      "identifier": "resizeGroupArea",
+      "shortcut": "cmd e",
+      "script": "Layers/Resize-Group-Area.cocoascript"
+    },
+    {
+      "name": "Snap Layer To Eight",
+      "identifier": "snapLayerToEight",
+      "shortcut": "",
+      "script": "Layers/Snap-Layer-To-Eight.cocoascript"
+    },
+    {
+      "name": "Togge Click Throught",
+      "identifier": "toggleClickThrought",
+      "shortcut": "cmd shift d",
+      "script": "Layers/Toggle-Click-Throught.cocoascript"
+    },
+    {
+      "name": "Toggle User Guides",
+      "identifier": "toggleUserGuides",
+      "shortcut": "cmd l",
+      "script": "Layers/Toggle-User-Guides.cocoascript"
+    },
+    {
+      "name": "Preview Artboard (Desktop)",
+      "identifier": "previewArtboardDesktop",
+      "shortcut": "alt cmd ñ",
+      "script": "Preview/Preview-Artboard-Desktop.cocoascript"
+    },
+    {
+      "name": "Preview Artboard (Mobile)",
+      "identifier": "previewArtboardMobile",
+      "shortcut": "",
+      "script": "Preview/Preview-Artboard-Mobile.cocoascript"
+    }
+  ],
+  "menu": {
+    "isRoot": false,
+    "items": [
+        {
+            "title":"Layers",
+            "items":[
+                "appendParentBlockName",
+                "removeEmptyGroups",
+                "resizeGroupArea",
+                "snapLayerToEight",
+                "toggleClickThrought",
+                "toggleUserGuides"
+            ]
+        },
+        {
+            "title":"Preview",
+            "items":[
+                "previewArtboardDesktop",
+                "previewArtboardMobile"
+            ]
+        }
+    ]
+  }
+}

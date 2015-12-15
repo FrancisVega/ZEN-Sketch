@@ -1,0 +1,47 @@
+function writeFile(filename, the_string) {
+
+    var path =[@"" stringByAppendingString: filename];
+    var str = [@"" stringByAppendingString: the_string];
+
+    str.dataUsingEncoding_(NSUTF8StringEncoding).writeToFile_atomically_(path, true)
+
+}
+
+//var documentPath = "/" //[[doc fileURL] path].split([doc displayName] + ".sketch")[0];
+
+// GLOBAL
+var doc = context.document
+var previzFolder = "/.previz";
+var path = NSHomeDirectory() + previzFolder;
+
+// PNG
+var currentArtboard = doc.currentPage().currentArtboard()
+    var currentArtboardName = currentArtboard.name();
+    var exportImageFilePath = path + "/" + currentArtboardName + ".png"
+    [doc saveArtboardOrSlice:currentArtboard toFile:exportImageFilePath]
+
+    // HTML
+    var content = '<!DOCTYPE html>\
+                  <html>\
+                  <head>\
+                  <title>Presentacion</title>\
+                  <style>\
+                  * {\
+                      padding:0;\
+                          margin:0;\
+                  }\
+                  div img {\
+                      width: 100%;\
+                          margin:0 auto;\
+                  }\
+                  </style>\
+                  </head>\
+                  <body>\
+                  <div>\
+                  <img src='+ currentArtboardName +'.png />\
+                  </div>\
+                  </body>\
+                  </html>'
+
+                  writeFile(path + "/" + currentArtboardName + ".html", content)
+                  [doc showMessage: "Mobile Previz create" + path];
