@@ -1,6 +1,0 @@
-// Filter selection with shape layers
-// Set keyboard preferences (F2)
-
-@import "common.js"
-
-filterSelectionWithShapeLayers()

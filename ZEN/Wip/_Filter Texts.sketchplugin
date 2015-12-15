@@ -1,6 +1,0 @@
-// Filter selection with text layers
-// Set keyboard preferences (F1)
-
-@import "common.js"
-
-filterSelectionWithTextLayers()

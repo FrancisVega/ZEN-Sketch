@@ -1,6 +1,0 @@
-// Copia texto en el clipboard del sistema
-pasteBoard =  NSPasteboard.generalPasteboard()
-
-pasteBoard.declareTypes_owner( [ NSPasteboardTypeString ], null );
-text = "jandlker"
-pasteBoard.setString_forType( text, NSPasteboardTypeString );
