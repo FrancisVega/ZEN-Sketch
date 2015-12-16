@@ -1,7 +1,8 @@
 // Fit group bounding box size
 
-var sel = context.selection;
-
-for (var i=0;i<sel.length();i++) {
-	sel[i].resizeRoot(1);
+var onRun = function(context) {
+  @import '../sQuery/sQuery.js';
+  $("%groups%").each(function(){
+    $(this).getLayer().resizeRoot(1);
+  });
 }

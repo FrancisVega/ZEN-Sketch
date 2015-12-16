@@ -1,6 +1,13 @@
-// (cmd l)
+// Tootle User Guides Layer
+// @shortcut cmd l
 
-@import '../sQuery/sQuery.js';
+var onRun = function(context) {
+  // Import sQuery
+  @import '../sQuery/sQuery.js';
 
-var guidesGroup = $('*').withName('Guides').getLayer();
-    guidesGroup.setIsVisible(!guidesGroup.isVisible());
+  // Toggle Guides layer visibility
+  var guidesGroup = $('*').withName('Guides').getLayer();
+      guidesGroup.setIsVisible(!guidesGroup.isVisible());
+
+}
+
