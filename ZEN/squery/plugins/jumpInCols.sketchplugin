@@ -3,20 +3,30 @@
 
 (function($){
 
-  $.fn.jumpInCols = function(value) {
+  $.fn.jumpInCols = function(dir) {
 
-    function foo (){
-
-    }
+    var artboardName = $("%artboard%").getLayer().name();
+    var colWidthSplit = artboardName.split("@");
+    var colWidth = parseInt(colWidthSplit[colWidthSplit.length-1]);
+    var nCols = colWidthSplit[colWidthSplit.length-2].split("-")[1];
 
     this.each(function() {
       var layer = $(this).getLayer();
       var currentPosition = layer.frame().x();
-      var finalPosition = currentPosition + value;
-      layer.frame().setX(finalPosition);
+      var finalPosition = currentPosition + colWidth;
+
+      if (dir == "right") {
+        var colPosition = parseInt(currentPosition/colWidth)+1;
+      } else if (dir == "left") {
+        var colPosition = parseInt(currentPosition/colWidth)-1;
+      }
+
+      if (colPosition < nCols && colPosition >= 0) {
+        layer.frame().setX(colPosition*colWidth);
+      }
     });
 
-      return this;
+    return this;
 
    };
 

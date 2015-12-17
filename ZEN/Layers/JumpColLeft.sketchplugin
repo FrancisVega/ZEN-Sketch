@@ -1,0 +1,6 @@
+// (ctrl shift h)
+
+@import '../sQuery/sQuery.js'
+@import '../sQuery/plugins/jumpInCols.sketchplugin';
+
+$('%selected%').jumpInCols('left');
