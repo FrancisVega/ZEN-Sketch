@@ -1,0 +1,92 @@
+{
+  "name": "Zen Sketch",
+  "description": "A very personal plugin collection for Sketch",
+  "author": "Francis Vega",
+  "author": "hisconer@gmail.com",
+  "homepage": "https://github.com/FrancisVega/ZEN-Sketch",
+  "version": 1.1,
+  "identifier": "com.example.sketch.zen",
+  "compatibleVersion": "3.4.4",
+  "bundleVersion": 1,
+  "commands": [
+    {
+      "name": "Append BEM",
+      "identifier": "appendBEM",
+      "handler": "onRun",
+      "shortcut": "alt cmd r",
+      "script": "Layers/Append-BEM.cocoascript"
+    },
+    {
+      "name": "Remove Empty Groups",
+      "identifier": "removeEmptyGroups",
+      "handler": "onRun",
+      "shortcut": "cmd e",
+      "script": "Layers/Remove-Empty-Groups.cocoascript"
+    },
+    {
+      "name": "Resize Group Area",
+      "identifier": "resizeGroupArea",
+      "handler": "onRun",
+      "shortcut": "",
+      "script": "Layers/Resize-Group-Area.cocoascript"
+    },
+    {
+      "name": "Snap Layer To Eight",
+      "identifier": "snapLayerToEight",
+      "handler": "onRun",
+      "shortcut": "",
+      "script": "Layers/Snap-Layer-To-Eight.cocoascript"
+    },
+    {
+      "name": "Togge Click Throught",
+      "identifier": "toggleClickThrought",
+      "handler": "onRun",
+      "shortcut": "cmd shift d",
+      "script": "Layers/Toggle-Click-Throught.cocoascript"
+    },
+    {
+      "name": "Toggle User Guides",
+      "identifier": "toggleUserGuides",
+      "handler": "onRun",
+      "shortcut": "cmd l",
+      "script": "Layers/Toggle-User-Guides.cocoascript"
+    },
+    {
+      "name": "Preview Artboard (Desktop)",
+      "identifier": "previewArtboardDesktop",
+      "handler": "onRun",
+      "shortcut": "alt cmd ñ",
+      "script": "Preview/Preview-Artboard-Desktop.cocoascript"
+    },
+    {
+      "name": "Preview Artboard (Mobile)",
+      "identifier": "previewArtboardMobile",
+      "handler": "onRun",
+      "shortcut": "",
+      "script": "Preview/Preview-Artboard-Mobile.cocoascript"
+    }
+  ],
+  "menu": {
+    "isRoot": false,
+    "items": [
+        {
+            "title":"Layers",
+            "items":[
+                "removeEmptyGroups",
+                "appendBEM",
+                "resizeGroupArea",
+                "snapLayerToEight",
+                "toggleClickThrought",
+                "toggleUserGuides"
+            ]
+        },
+        {
+            "title":"Preview",
+            "items":[
+                "previewArtboardDesktop",
+                "previewArtboardMobile"
+            ]
+        }
+    ]
+  }
+}

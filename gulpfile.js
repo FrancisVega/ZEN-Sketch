@@ -1,26 +1,25 @@
 'use strict';
 
 //
-// ZEN Sketch Plugin Repo
+// ZEN Sketch Gulpfile
 // 2015
 //
 
 // Gulp itself
 var gulp   = require('gulp');
 var rename = require('gulp-rename');
-var jshint = require('gulp-jshint');
-var plumber = require('gulp-plumber');
+
 // Directorios del proyecto
 //
 var dirs = {
     src: '',
-    dst: '/sketchplugins/ZEN',
+    dst: '/sketchplugins',
 };
 
 // Watch
 //
 gulp.task('watch', function(){
-    gulp.watch(dirs.src + 'ZEN/**/*', ['copy']);
+    gulp.watch(dirs.src + 'zen.sketchplugin/**/*', ['copy']);
 });
 
 
@@ -29,15 +28,10 @@ gulp.task('watch', function(){
 //
 gulp.task('copy', function() {
     // Archivos en el raiz
-    gulp.src(['ZEN/**/*'], {cwd: dirs.src})
+    gulp.src(['zen.sketchplugin'], {cwd: dirs.src})
     .pipe(gulp.dest(dirs.dst));
-});
-
-gulp.task('lint', function() {
-  return gulp.src(dirs.src + 'ZEN/**/*.js')
-    .pipe(plumber())
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
+    gulp.src(['zen.sketchplugin/**/*'], {cwd: dirs.src})
+    .pipe(gulp.dest(dirs.dst + "/zen.sketchplugin"));
 });
 
 // --------------------------------------------------------------------------{{{

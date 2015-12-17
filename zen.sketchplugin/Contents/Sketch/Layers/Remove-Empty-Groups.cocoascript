@@ -1,0 +1,7 @@
+// Remove empty groups
+// @shortcut cmd  e
+
+var onRun = function(context) {
+  @import '../sQuery/sQuery.js';
+  $("%groups%").isEmpty().remove();
+}
