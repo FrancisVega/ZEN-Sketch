@@ -6,7 +6,7 @@ var onRun = function(context) {
   @import '../sQuery/sQuery.js';
 
   // Toggle Guides layer visibility
-  var guidesGroup = $('*').withName('Guides').getLayer();
+  var guidesGroup = $('*').withName('Guides').MSLayer();
       guidesGroup.setIsVisible(!guidesGroup.isVisible());
 
 }

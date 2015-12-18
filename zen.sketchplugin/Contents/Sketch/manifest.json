@@ -54,15 +54,15 @@
     {
       "name": "Preview Artboard (Desktop)",
       "identifier": "previewArtboardDesktop",
-      "handler": "onRun",
       "shortcut": "alt cmd ñ",
+      "handler": "onRun",
       "script": "Preview/Preview-Artboard-Desktop.cocoascript"
     },
     {
       "name": "Preview Artboard (Mobile)",
       "identifier": "previewArtboardMobile",
-      "handler": "onRun",
       "shortcut": "",
+      "handler": "onRun",
       "script": "Preview/Preview-Artboard-Mobile.cocoascript"
     }
   ],

@@ -6,7 +6,7 @@ var onRun = function(context) {
 
   $("%selected%").each(function(){
 
-    var layer = $(this).getLayer();
+    var layer = $(this).MSLayer();
     var B = /^[^__]*/g.exec(layer.parentGroup().name())[0];
     var EM = /__.*/g.exec(layer.name());
      if (EM) {
