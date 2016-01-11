@@ -1,0 +1,30 @@
+// Transform Each
+
+var onRun = function(context) {
+
+  @import '../sQuery/sQuery.js';
+
+  var size = context.document.askForUserInput_initialValue("Enter Size Multiplier", "100%");
+  var re = /\d*\.*\d/;
+  pValue = (parseFloat(re.exec(size)[0]))/100;
+
+  var x, y, w, h, frame;
+  $('%selected%').each(function(){
+
+    // Transform data
+    frame = this.frame();
+    x = frame.x();
+    y = frame.y();
+    w = frame.width();
+    h = frame.height();
+
+    // Moving and scaling
+    frame.width = w*pValue;
+    frame.height = h*pValue;
+    frame.x = x+(w-(w*(pValue)))/2
+    frame.y = y+(h-(h*(pValue)))/2
+
+  });
+
+};
+

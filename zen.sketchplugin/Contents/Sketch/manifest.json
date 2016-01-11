@@ -10,6 +10,13 @@
   "bundleVersion": 1,
   "commands": [
     {
+      "name": "Transform Each",
+      "identifier": "transformEach",
+      "handler": "onRun",
+      "shortcut": "alt cmd shift d",
+      "script": "Layers/Transform-Each.cocoascript"
+    },
+    {
       "name": "Append BEM",
       "identifier": "appendBEM",
       "handler": "onRun",
@@ -72,6 +79,7 @@
         {
             "title":"Layers",
             "items":[
+                "transformEach",
                 "removeEmptyGroups",
                 "appendBEM",
                 "resizeGroupArea",
