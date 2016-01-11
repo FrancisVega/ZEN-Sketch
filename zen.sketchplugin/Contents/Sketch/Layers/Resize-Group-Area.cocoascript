@@ -3,6 +3,6 @@
 var onRun = function(context) {
   @import '../sQuery/sQuery.js';
   $("%groups%").each(function(){
-    $(this).getLayer().resizeRoot(1);
+    $(this).MSLayer().resizeRoot(1);
   });
 }

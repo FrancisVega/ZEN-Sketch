@@ -10,6 +10,13 @@
   "bundleVersion": 1,
   "commands": [
     {
+      "name": "Transform Each",
+      "identifier": "transformEach",
+      "handler": "onRun",
+      "shortcut": "alt cmd shift d",
+      "script": "Layers/Transform-Each.cocoascript"
+    },
+    {
       "name": "Append BEM",
       "identifier": "appendBEM",
       "handler": "onRun",
@@ -54,15 +61,15 @@
     {
       "name": "Preview Artboard (Desktop)",
       "identifier": "previewArtboardDesktop",
-      "handler": "onRun",
       "shortcut": "alt cmd ñ",
+      "handler": "onRun",
       "script": "Preview/Preview-Artboard-Desktop.cocoascript"
     },
     {
       "name": "Preview Artboard (Mobile)",
       "identifier": "previewArtboardMobile",
-      "handler": "onRun",
       "shortcut": "",
+      "handler": "onRun",
       "script": "Preview/Preview-Artboard-Mobile.cocoascript"
     }
   ],
@@ -72,6 +79,7 @@
         {
             "title":"Layers",
             "items":[
+                "transformEach",
                 "removeEmptyGroups",
                 "appendBEM",
                 "resizeGroupArea",
