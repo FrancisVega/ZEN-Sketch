@@ -41,11 +41,7 @@ var currentArtboard = doc.currentPage().currentArtboard()
                 }\
                 div {\
                   height:' + artboardHeight + 'px;\
-<<<<<<< HEAD:ZEN/Preview/Prev Desktop.sketchplugin
-                    width:' + artboardWidth + 'px;\
-=======
                   width:' + artboardWidth + 'px;\
->>>>>>> 085f9e1bfb8a3003cfab64e7588a4f8002748a99:zen.sketchplugin/Contents/Sketch/Preview/Preview-Artboard-Desktop.cocoascript
                     margin:0 auto;\
                     background:url(previz.png) top center no-repeat;\
                     background-size: 100%;\
@@ -60,3 +56,5 @@ var currentArtboard = doc.currentPage().currentArtboard()
 writeFile(path + "/previz.html", content)
 
 [doc showMessage: "Desktop Previz create" + path];
+
+log("hoila")
