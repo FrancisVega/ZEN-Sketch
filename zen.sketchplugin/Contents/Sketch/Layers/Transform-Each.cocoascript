@@ -6,7 +6,7 @@ var onRun = function(context) {
 
   var size = context.document.askForUserInput_initialValue("Enter Size Multiplier", "100%");
   var re = /\d*\.*\d/;
-  pValue = (parseFloat(re.exec(size)[0]))/100;
+  var pValue = (parseFloat(re.exec(size)[0]))/100;
 
   var x, y, w, h, frame;
   $('%selected%').each(function(){
