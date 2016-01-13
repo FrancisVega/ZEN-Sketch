@@ -17,6 +17,13 @@
       "script": "Layers/Transform-Each.cocoascript"
     },
     {
+      "name": "Send to Artboard",
+      "identifier": "sendToArtboard",
+      "handler": "onRun",
+      "shortcut": "",
+      "script": "Layers/Send-To-Artboard.cocoascript"
+    },
+    {
       "name": "Append BEM",
       "identifier": "appendBEM",
       "handler": "onRun",
@@ -79,6 +86,7 @@
         {
             "title":"Layers",
             "items":[
+                "sendToArtboard",
                 "transformEach",
                 "removeEmptyGroups",
                 "appendBEM",
