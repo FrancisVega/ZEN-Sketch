@@ -109,6 +109,18 @@
     var i;
     var keyChar = "%";
 
+    /**
+     * Pasa un MSArray a un JSArray
+     * @param {MSArray} _MSArray El MSArray
+     * @return {JSarray} jsArray El array en js
+     */
+    function toArray(_MSArray) {
+      var jsArray = [];
+      for(var i=0, len=_MSArray.count(); i<len; i++) {
+        jsArray.push(_MSArray[i]);
+      }
+      return jsArray;
+    }
 
     /**
      * Devuelve el artboard activo o el primero de la lista en su defecto
@@ -215,7 +227,11 @@
 
         case "%artboards%":
           _layers = [];
-          _layers = [doc.currentPage().currentArtboard()];
+          var _layersB = doc.currentPage().artboards();
+          for(var i=0, len=_layersB.length(); i<len; i++) {
+            _layers.push(_layersB[i]);
+          }
+          //log(doc.currentPage().artboards());
           break;
 
         case "%artboard%":
@@ -861,8 +877,10 @@
         currentLayerParentGroup.removeLayer(layer);
       }
 
+      // @API-CHANGE Parece que ha cambiado en la 3.5
       // Resize group
-      newGroup.resizeRoot(0);
+      // newGroup.resizeRoot(0);
+      // @API-CHANGE Parece que ha cambiado en la 3.5
 
       // Select new group
       //newGroup.setIsSelected(true);

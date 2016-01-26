@@ -17,6 +17,13 @@
       "script": "Layers/Transform-Each.cocoascript"
     },
     {
+      "name": "Make font grid icons",
+      "identifier": "makeFontGridIcons",
+      "handler": "onRun",
+      "shortcut": "",
+      "script": "Layers/Make-Font-Artboard-Icons.cocoascript"
+    },
+    {
       "name": "Send to Artboard",
       "identifier": "sendToArtboard",
       "handler": "onRun",
@@ -86,6 +93,7 @@
         {
             "title":"Layers",
             "items":[
+                "makeFontGridIcons",
                 "sendToArtboard",
                 "transformEach",
                 "removeEmptyGroups",
