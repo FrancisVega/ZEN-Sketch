@@ -3,5 +3,6 @@
 
 var onRun = function(context) {
   @import '../sQuery/sQuery.js';
-  $("%groups%").isEmpty().remove();
+  @import '../sQuery/plugins/core.removeEmptyGroupsRecursive.js';
+  $("%groups%").removeEmptyGroupsRecursive();
 }
