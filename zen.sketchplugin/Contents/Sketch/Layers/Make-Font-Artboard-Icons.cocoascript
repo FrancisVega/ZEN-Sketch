@@ -15,11 +15,12 @@ var onRun = function(context) {
     //artboards.layers.reverse();
     artboards.each(function(idx) {
       if (withIconName) {
-        iconName = "-" + this.layers().array()[0].name();
+        fullIconName = glyphName + this.layers().array()[0].name();
       } else {
-        iconName = '';
+        fullIconName = glyphName + pad(idx, 3) + iconName;
       }
-      this.name = glyphName + pad(idx, 3) + iconName;
+      this.name = fullIconName;
+      log(this.name)
     });
   }
 
@@ -57,6 +58,6 @@ var onRun = function(context) {
 
   CURRENTPAGE.removeLayer(CURRENTARTBOARD);
   reorderArtboards(10, 300);
-  iconNameRename("rIcon_", false);
+  iconNameRename("", true);
 
 }
