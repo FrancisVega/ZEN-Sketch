@@ -10,13 +10,6 @@
   "bundleVersion": 1,
   "commands": [
     {
-      "name": "Adjust MarginBox",
-      "identifier": "adjustmarginbox",
-      "handler": "onRun",
-      "shortcut": "cmd j",
-      "script": "Layers/AdjustMarginBox.cocoascript"
-    },
-    {
       "name": "Transform Each",
       "identifier": "transformEach",
       "handler": "onRun",
@@ -96,7 +89,7 @@
     {
       "name": "Live Query",
       "identifier": "liveQuery",
-      "shortcut": "cmd ¡",
+      "shortcut": "cmd '",
       "handler": "onRun",
       "script": "sQuery/liveQuery/liveQuery.js"
     }

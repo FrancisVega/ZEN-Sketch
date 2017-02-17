@@ -1,0 +1,62 @@
+var onRun = function(context) {
+
+  @import '../sQuery/sQuery.js';
+
+  function pad(n, width, z) {
+    z = z || '0';
+    n = n + '';
+    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+  }
+
+  function iconNameRename(glyphName, withIconName) {
+    withIconName = withIconName || false;
+    var artboards = $("%artboards%");
+    var iconName;
+    //artboards.layers.reverse();
+    artboards.each(function(idx) {
+      if (withIconName) {
+        iconName = "-" + this.layers().array()[0].name();
+      } else {
+        iconName = '';
+      }
+      this.name = glyphName + pad(idx, 3) + iconName;
+    });
+  }
+
+
+  function reorderArtboards(itemsPerFile, offset) {
+    var artboards = $("%artboards%");
+    var artboardWidth = 560;
+    var artboardHeight = 560;
+    var file = 0;
+    var row = 0;
+
+    //artboards.layers.reverse();
+
+    for(j=0; j<(artboards.length); j++) {
+      if(file>itemsPerFile-1) { row +=1; file=0; }
+      artboards.layers[j].frame().x = (artboardWidth + offset) * file;
+      artboards.layers[j].frame().y = (artboardHeight + offset) * row;
+      file +=1;
+    }
+  }
+
+
+  var CURRENTPAGE = context.document.currentPage();
+  var CURRENTARTBOARD = context.document.currentPage().currentArtboard();
+
+  $("%shapes%").each(function(){
+
+    var artboard = $(CURRENTPAGE).createArtboard("newArtboard", 0, 0, 560, 560); // <- sQuery
+    artboard.addLayers([this]);
+    CURRENTARTBOARD.removeLayer(this);
+    this.frame().x = (560-this.frame().width())/2;
+    this.frame().y = (560-this.frame().height())/2;
+
+  })
+
+  CURRENTPAGE.removeLayer(CURRENTARTBOARD);
+  reorderArtboards(10, 300);
+  iconNameRename("rIcon_", false);
+
+}

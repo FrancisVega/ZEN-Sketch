@@ -1,0 +1,8 @@
+// Fit group bounding box size
+
+var onRun = function(context) {
+  @import '../sQuery/sQuery.js';
+  $("%groups%").each(function(){
+    $(this).MSLayer().resizeRoot(1);
+  });
+}

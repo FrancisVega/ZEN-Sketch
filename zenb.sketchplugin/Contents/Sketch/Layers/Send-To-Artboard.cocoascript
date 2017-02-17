@@ -1,0 +1,7 @@
+var onRun = function(context) {
+  @import '../sQuery/sQuery.js';
+  @import '../sQuery/plugins/core.parentRoot.js';
+
+  $("%selected%").parentRoot();
+
+}

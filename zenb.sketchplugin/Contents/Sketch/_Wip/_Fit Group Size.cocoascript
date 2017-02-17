@@ -1,0 +1,9 @@
+// Resizes the selected groups to fit around all of its sub-layers
+
+var sel = context.selection
+var len = sel.length();
+var i;
+
+for(i=0;i<len;++i) {
+    sel[i].resizeRoot();
+}

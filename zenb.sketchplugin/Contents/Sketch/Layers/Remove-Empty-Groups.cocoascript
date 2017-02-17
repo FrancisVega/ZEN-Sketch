@@ -13,6 +13,6 @@ var onRun = function(context) {
     });
     ARTBOARD.deselectAllLayers();
     emptyGroups.map(layer => layer.setIsSelected(true));
-  };
+  }
   selectedEmptyGroups();
-};
+}
