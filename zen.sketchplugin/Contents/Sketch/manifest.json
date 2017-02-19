@@ -10,11 +10,11 @@
   "bundleVersion": 1,
   "commands": [
     {
-      "name": "Adjust MarginBox",
-      "identifier": "adjustmarginbox",
+      "name": "Unlock All Layers",
+      "identifier": "unlockalllayers",
       "handler": "onRun",
-      "shortcut": "cmd j",
-      "script": "Layers/AdjustMarginBox.cocoascript"
+      "shortcut": "",
+      "script": "Layers/UnlockAllLayers.cocoascript"
     },
     {
       "name": "Transform Each",
@@ -107,6 +107,7 @@
         {
             "title":"Layers",
             "items":[
+                "unlockalllayers",
                 "makeFontGridIcons",
                 "sendToArtboard",
                 "transformEach",
