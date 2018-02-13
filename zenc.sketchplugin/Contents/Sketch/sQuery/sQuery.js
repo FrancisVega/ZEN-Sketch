@@ -36,7 +36,7 @@
    * @return {MSArray}
    */
   const findObjectsByName = (name, scope) => {
-    const predicate = NSPredicate.predicateWithFormat("name == %@", name)
+    const predicate = NSPredicate.predicateWithFormat("name == %@",name)
     return scope.filteredArrayUsingPredicate(predicate)
   }
 
@@ -46,62 +46,59 @@
    * @param {scope} scope The scope (layers) of search
    * @return {MSArray}
    */
-  const findObjectsOfType = (classType, scope) => scope.slice().filter(lyr => lyr.class() == classType)
+  const findObjectsOfType = (classType, scope) => {
+    const predicate = NSPredicate.predicateWithFormat("self isKindOfClass: %@", classType)
+    return scope.filteredArrayUsingPredicate(predicate)
+  }
 
   /**
    * flattenArray
    * @param {array} arr The array to flatten
    * @return {array} return a one level deep array
    */
-  const flattenArray = arr => arr.reduce( (flat, toFlatten) =>
-    flat.concat( Array.isArray(toFlatten) ? flattenArray(toFlatten) : toFlatten), []
-  )
+  const flattenArray = arr => arr.reduce(
+    (flat, toFlatten) => flat.concat(
+      Array.isArray(toFlatten) ? flattenArray(toFlatten) : toFlatten), [])
 
   const SQUERY = function(selector, page, artboard) {
 
     if (typeof selector == "string") {
-
-      // Consts
-      const DOC = context.document;
-      const CURRENTPAGE = DOC.currentPage();
-      const CURRENTARTBOARD = CURRENTPAGE.currentArtboard();
-
       switch(selector) {
         // All
         case "*":
-          this.layers = CURRENTARTBOARD.children().slice().filter(layer => layer.class() != "MSArtboardGroup" && layer.class() != "MSRectangleShape")
+          this.layers = context.document.currentPage().currentArtboard().children().slice().filter(layer => layer.class() != "MSArtboardGroup" && layer.class() != "MSRectangleShape")
           break
 
         case "%hierarchy%":
-          this.layers = CURRENTARTBOARD.layers()
+          this.layers = context.document.currentPage().currentArtboard().layers()
           break
 
         case "%pages%":
-          this.layers = DOC.pages()
+          this.layers = context.document.pages()
           break
 
         case "%artboards%":
-          this.layers = CURRENTPAGE.artboards()
+          this.layers = context.document.currentPage().artboards()
           break
 
         case "%images%":
-          this.layers = findObjectsOfType(MSBitmapLayer, CURRENTARTBOARD.children())
+          this.layers = findObjectsOfType(MSBitmapLayer, context.document.currentPage().currentArtboard().children())
           break
 
         case "%layers%":
-          this.layers = CURRENTARTBOARD.children().slice().filter(layer => layer.class() != "MSArtboardGroup" && layer.class() != "MSRectangleShape" && layer.class() != "MSLayerGroup")
+          this.layers = context.document.currentPage().currentArtboard().children().slice().filter(layer => layer.class() != "MSArtboardGroup" && layer.class() != "MSRectangleShape" && layer.class() != "MSLayerGroup")
           break
 
         case "%shapes%":
-          this.layers = findObjectsOfType(MSShapeGroup, CURRENTARTBOARD.children())
+          this.layers = findObjectsOfType(MSShapeGroup, context.document.currentPage().currentArtboard().children())
           break
 
         case "%groups%":
-          this.layers = findObjectsOfType(MSLayerGroup, CURRENTARTBOARD.children())
+          this.layers = findObjectsOfType(MSLayerGroup, context.document.currentPage().currentArtboard().children())
           break
 
         case "%textLayers%":
-          this.layers = findObjectsOfType(MSTextLayer, CURRENTARTBOARD.children())
+          this.layers = findObjectsOfType(MSTextLayer, context.document.currentPage().currentArtboard().children())
           break
 
         case "%selected%":
@@ -110,7 +107,7 @@
 
         // Default: Layer name.
         default:
-          this.layers = findObjectsByName(selector, CURRENTARTBOARD.children())
+          this.layers = findObjectsByName(selector, context.document.currentPage().currentArtboard().children())
           break
       }
     }
@@ -430,7 +427,7 @@
      * @return {sQuery}
      */
     UISelect: function() {
-      context.selection[0].select_byExpandingSelection(0, 0)
+      context.document.currentPage().deselectAllLayers()
       this.layers.slice().map(layer => layer.select_byExpandingSelection(true, true))
       return this
     },
@@ -510,16 +507,16 @@
         const artboard = MSArtboardGroup.new()
         const frame = artboard.frame()
         frame.setX(x)
-        frame.setY(y)
+        frame.setY((y))
         frame.setWidth(width)
         frame.setHeight(height)
         artboard.name = name
 
-        const page = this.layers[0]
-        page.addLayers([artboard])
-        page.currentArtboard = artboard
-        artboard.select_byExpandingSelection(1, 0)
+        this.layers[0].addLayers([artboard])
+        this.layers[0].deselectAllLayers()
+        this.layers[0].currentArtboard = artboard
 
+        artboard.setIsSelected(true)
         return artboard
 
       } catch(e) {

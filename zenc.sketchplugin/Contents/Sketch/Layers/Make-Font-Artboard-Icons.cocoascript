@@ -1,9 +1,6 @@
 var onRun = function(context) {
 
-
   @import '../sQuery/sQuery.js';
-
-  const ICON_SIZE = 16;
 
   function pad(n, width, z) {
     z = z || '0';
@@ -18,24 +15,26 @@ var onRun = function(context) {
     //artboards.layers.reverse();
     artboards.each(function(idx) {
       if (withIconName) {
-        fullIconName = glyphName + this.layers()[0].name();
-
+        fullIconName = glyphName + this.layers().array()[0].name();
       } else {
         fullIconName = glyphName + pad(idx, 3) + iconName;
       }
       this.name = fullIconName;
+      log(this.name)
     });
   }
 
 
   function reorderArtboards(itemsPerFile, offset) {
     var artboards = $("%artboards%");
-    var artboardWidth = ICON_SIZE;
-    var artboardHeight = ICON_SIZE;
+    var artboardWidth = 560;
+    var artboardHeight = 560;
     var file = 0;
     var row = 0;
+
     //artboards.layers.reverse();
-    for(j=0; j<(artboards.layers.length); j++) {
+
+    for(j=0; j<(artboards.length); j++) {
       if(file>itemsPerFile-1) { row +=1; file=0; }
       artboards.layers[j].frame().x = (artboardWidth + offset) * file;
       artboards.layers[j].frame().y = (artboardHeight + offset) * row;
@@ -49,17 +48,16 @@ var onRun = function(context) {
 
   $("%shapes%").each(function(){
 
-    var artboard = $(CURRENTPAGE).createArtboard("newArtboard", 0, 0, ICON_SIZE, ICON_SIZE); // <- sQuery
+    var artboard = $(CURRENTPAGE).createArtboard("newArtboard", 0, 0, 560, 560); // <- sQuery
     artboard.addLayers([this]);
     CURRENTARTBOARD.removeLayer(this);
-    this.frame().x = (ICON_SIZE-this.frame().width())/2;
-    this.frame().y = (ICON_SIZE-this.frame().height())/2;
+    this.frame().x = (560-this.frame().width())/2;
+    this.frame().y = (560-this.frame().height())/2;
 
   })
 
   CURRENTPAGE.removeLayer(CURRENTARTBOARD);
-  reorderArtboards(10, 32);
+  reorderArtboards(10, 300);
   iconNameRename("", true);
-
 
 }

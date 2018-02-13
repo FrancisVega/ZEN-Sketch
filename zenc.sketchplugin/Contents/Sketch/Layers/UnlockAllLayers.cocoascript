@@ -1,0 +1,4 @@
+var onRun = function(context) {
+  @import '../sQuery/sQuery.js';
+  $("*").unlock();
+}

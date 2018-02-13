@@ -80,23 +80,9 @@
       "script": "Layers/Toggle-User-Guides.cocoascript"
     },
     {
-      "name": "Preview Artboard (iPhone X)",
-      "identifier": "previewArtboardiphonex",
-      "shortcut": "alt cmd x",
-      "handler": "onRun",
-      "script": "Preview/Preview-Artboard-iphonex.cocoascript"
-    },
-    {
-      "name": "Preview Artboard (Simple)",
-      "identifier": "previewArtboardSimple",
-      "shortcut": "alt cmd l",
-      "handler": "onRun",
-      "script": "Preview/Preview-Artboard-Simple.cocoascript"
-    },
-    {
       "name": "Preview Artboard (Desktop)",
       "identifier": "previewArtboardDesktop",
-      "shortcut": "alt cmd ´",
+      "shortcut": "alt cmd l",
       "handler": "onRun",
       "script": "Preview/Preview-Artboard-Desktop.cocoascript"
     },
@@ -142,7 +128,6 @@
         {
             "title":"Preview",
             "items":[
-                "previewArtboardSimple",
                 "previewArtboardDesktop",
                 "previewArtboardMobile"
             ]

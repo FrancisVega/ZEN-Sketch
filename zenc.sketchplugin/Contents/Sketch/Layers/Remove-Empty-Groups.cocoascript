@@ -1,0 +1,18 @@
+// Remove empty groups
+// @shortcut cmd e
+var onRun = function(context) {
+  const selectedEmptyGroups = () => {
+    const DOC = context.document;
+    const PAGE = DOC.currentPage();
+    const ARTBOARD = PAGE.currentArtboard();
+    const allLayers = ARTBOARD.children().slice();
+    const emptyGroups = allLayers.filter(layer => {
+      try {
+        return layer.layers().length === 0;
+      } catch(e) { }
+    });
+    ARTBOARD.deselectAllLayers();
+    emptyGroups.map(layer => layer.setIsSelected(true));
+  };
+  selectedEmptyGroups();
+};

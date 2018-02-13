@@ -43,18 +43,10 @@ var onRun = function(context){
     }
     .previz {
       display: flex;
-      height: 100vh;
-      align-items: center;
-      justify-content: center;
     }
     .previz-image {
-      width: 100%;
-    }
-    @media (min-width: ${artboardWidth}px) {
-      .previz-image {
-        width: ${artboardWidth}px;
-        height: ${artboardHeight}px;
-      }
+      width: ${artboardWidth}px;
+      height: ${artboardHeight}px;
     }
     </style>
 </head>
@@ -66,5 +58,5 @@ var onRun = function(context){
 </html>`;
 
   writeFile(path + "/previz.html", content);
-  [doc showMessage: "🖥  Desktop Previz"];
+  [doc showMessage: "🖥  Simple Previz"];
 }

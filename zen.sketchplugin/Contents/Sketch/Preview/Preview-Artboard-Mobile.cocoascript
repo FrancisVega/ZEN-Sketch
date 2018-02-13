@@ -1,50 +1,67 @@
 var onRun = function(context){
-
   function writeFile(filename, the_string) {
-    var path =[@"" stringByAppendingString: filename];
-    var str = [@"" stringByAppendingString: the_string];
+    const path =[@"" stringByAppendingString: filename];
+    const str = [@"" stringByAppendingString: the_string];
     str.dataUsingEncoding_(NSUTF8StringEncoding).writeToFile_atomically_(path, true)
   }
 
-  //var documentPath = "/" //[[doc fileURL] path].split([doc displayName] + ".sketch")[0];
-
   // GLOBAL
-  var doc = context.document;
-  var previzFolder = "/.previz";
-  var path = NSHomeDirectory() + previzFolder;
-  var artboardHeight = doc.currentPage().currentArtboard().frame().height();
-  var artboardWidth = doc.currentPage().currentArtboard().frame().width();
+  const doc = context.document;
+  const previzFolder = "/.previz";
+  const path = NSHomeDirectory() + previzFolder;
+  const artboardHeight = doc.currentPage().currentArtboard().frame().height();
+  const artboardWidth = doc.currentPage().currentArtboard().frame().width();
+  const currentArtboard = doc.currentPage().currentArtboard();
+  const currentArtboardName = currentArtboard.name().replace(/[^a-zA-Z0-9]/g,'')
 
-  // PNG
-  var currentArtboard = doc.currentPage().currentArtboard()
-  var currentArtboardName = currentArtboard.name()
-  var exportImageFilePath = path + "/" + currentArtboardName + ".png"
-  [doc saveArtboardOrSlice:currentArtboard toFile:exportImageFilePath]
+  // Get slice props
+  const getSliceProps = slice => {
+    return {
+      size: slice.size(),
+      format: slice.format()
+    }
+  }
 
-    // HTML
-    var content = '<!DOCTYPE html>\
-                  <html>\
-                  <head>\
-                  <title>Presentacion</title>\
-                  <style>\
-                  * {\
-                      padding:0;\
-                          margin:0;\
-                  }\
-                  div img {\
-                      width: 100%;\
-                          margin:0 auto;\
-                  }\
-                  </style>\
-                  </head>\
-                  <body>\
-                  <div>\
-                  <img src=\"'+ currentArtboardName +'.png\" />\
-                  </div>\
-                  </body>\
-                  </html>'
+  // Get slice
+  const getSlice = artboard => {
+    const sliceLayerAncestry = MSImmutableLayerAncestry.ancestryWithMSLayer(artboard);
+    const rect = MSSliceTrimming.trimmedRectForLayerAncestry(sliceLayerAncestry);
+    const slices = MSExportRequest.exportRequestsFromExportableLayer_inRect_useIDForName(artboard, rect, false);
+    return slices[0];
+  }
+
+  // Export slice
+  const exportSlice = (doc, slice, filename) => {
+    doc.saveArtboardOrSlice_toFile(slice, filename + "." + slice.format());
+  }
+
+  // Export
+  const exportImageFilePath = path + "/" + currentArtboardName;
+  exportSlice( doc, getSlice(currentArtboard), exportImageFilePath );
+
+  // HTML
+  const content = `<!DOCTYPE html>
+<html>
+<head>
+  <title>Zen Previz - ${currentArtboardName}</title>
+  <style>
+    * {
+      padding:0;
+      margin:0;
+    }
+    .previz-image {
+      width: 100%;
+      margin:0 auto;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <img class="previz-image" src=${currentArtboardName}.${getSlice(currentArtboard).format()}>
+</div>
+</body>
+</html>`
 
   writeFile(path + "/previz.html", content);
-  [doc showMessage: "Mobile Previz create" + path];
-
+  [doc showMessage: "📱  Mobile Previz"];
 }

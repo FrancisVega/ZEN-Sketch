@@ -1,0 +1,8 @@
+// Toggle click throught
+// @shortcut cmd shift d
+
+var onRun = function(context) {
+  @import '../sQuery/sQuery.js';
+  $('%groups%').toggleClickThrought();
+}
+
