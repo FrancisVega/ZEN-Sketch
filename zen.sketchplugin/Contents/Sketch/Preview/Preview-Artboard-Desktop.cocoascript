@@ -70,7 +70,7 @@ var onRun = function(context){
     <body>
     <div class="previz">
       <a href="previz${next}.html">
-      <img class="previz-image" src=${currentArtboardName}.${getSlice(currentArtboard).format()}>
+        <img class="previz-image" src=${currentArtboardName}.${getSlice(currentArtboard).format()}>
       </a>
     </div>
     </body>
