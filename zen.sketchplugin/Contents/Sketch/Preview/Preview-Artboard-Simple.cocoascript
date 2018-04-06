@@ -35,25 +35,25 @@ var onRun = function(context){
     const artboardHeight = artboard.frame().height();
     const artboardWidth = artboard.frame().width();
     const currentArtboard = artboard;
-    const currentArtboardName = currentArtboard.name().replace(/[^a-zA-Z0-9]/g,'')
 
-    // Export
-    const exportImageFilePath = path + "/" + currentArtboardName;
-    exportSlice( doc, getSlice(currentArtboard), exportImageFilePath );
-
-    log(idx)
-    log(array.length)
     if(idx == array.length - 1) {
       next = ""
     } else {
       next = idx + 1;
     }
 
+    const htmlName = idx == 0 ? "previz.html" : "previz" + idx + ".html"
+    const pngName = htmlName.split(".html")[0];
+
+    // Export
+    const exportImageFilePath = path + "/" + pngName;
+    exportSlice( doc, getSlice(currentArtboard), exportImageFilePath );
+
     // HTML
     const content = `<!DOCTYPE html>
     <html>
     <head>
-      <title>Zen Previz - ${currentArtboardName}</title>
+      <title>Zen Previz - ${pngName}</title>
       <style>
         * {
           padding:0;
@@ -71,15 +71,13 @@ var onRun = function(context){
     <body>
     <div class="previz">
       <a href="previz${next}.html">
-        <img class="previz-image" src=${currentArtboardName}.${getSlice(currentArtboard).format()}>
+        <img class="previz-image" src=${pngName}.${getSlice(currentArtboard).format()}>
       </a>
     </div>
     </body>
     </html>`;
 
-    const htmlName = idx == 0 ? "/previz.html" : "/previz" + idx + ".html"
-
-    writeFile(path + htmlName, content);
+    writeFile(path + "/" + htmlName, content);
 
   }) // End Map
 
