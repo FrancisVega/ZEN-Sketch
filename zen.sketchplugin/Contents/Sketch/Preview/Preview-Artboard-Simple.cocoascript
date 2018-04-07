@@ -1,6 +1,8 @@
 var onRun = function(context) {
   @import "common-preview.js";
   const doc = context.document;
-  exportArboardsWithTemplate ( context.selection, "simple" );
-  [doc showMessage: "🖥  Simple Previz"];
+  const exportTemplate = exportArboardsWithTemplate ( context.selection, "simple" );
+  if (exportTemplate) {
+    [doc showMessage: "🖥 Simple Previz"];
+  }
 }

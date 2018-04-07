@@ -1,6 +1,9 @@
 var onRun = function(context) {
   @import "common-preview.js";
   const doc = context.document;
-  exportArboardsWithTemplate ( context.selection, "mobile" );
-  [doc showMessage: "📱  Mobile Previz"];
+  const exportTemplate = exportArboardsWithTemplate ( context.selection, "mobile" );
+  if (exportTemplate) {
+    [doc showMessage: "📱 Mobile Previz"];
+  }
 }
+

@@ -26,8 +26,20 @@ const exportArboardsWithTemplate = ( artboards, template ) => {
   const previzFolder = "/.previz";
   const path = NSHomeDirectory() + previzFolder;
 
+  let finalSelection;
+  if (artboards.length == 1) {
+    finalSelection = [context.document.currentPage().currentArtboard()];
+  }
+  if (artboards.length > 1) {
+    finalSelection = artboards;
+  }
+  if (artboards.length < 1) {
+    [doc showMessage: "💩 Select at least one artboard"];
+    return false;
+  }
+
   // Artboard
-  artboards.slice().filter(ab => ab.class() == "MSArtboardGroup").sort(sortByHorizontalPosition)
+  finalSelection.slice().filter(ab => ab.class() == "MSArtboardGroup").sort(sortByHorizontalPosition)
     .map(function( artboard, idx, array ){
       const artboardHeight = artboard.frame().height();
       const artboardWidth = artboard.frame().width();
@@ -138,4 +150,5 @@ const exportArboardsWithTemplate = ( artboards, template ) => {
 
     }) // End Map
 
+  return true;
 }
