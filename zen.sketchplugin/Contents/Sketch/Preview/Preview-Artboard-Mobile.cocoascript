@@ -1,7 +1,34 @@
 var onRun = function(context) {
+
   @import "common-preview.js";
+
   const doc = context.document;
-  const exportTemplate = exportArboardsWithTemplate ( context.selection, "mobile" );
+
+  const template = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Zen Previz - {{htmlName}}</title>
+      <style>
+        * { padding:0; margin:0; }
+        .previz-image {
+          display: block;
+          width: 100%;
+          margin:0 auto;
+        }
+      </style>
+    </head>
+    <body>
+    <div>
+      <a href="previz{{next}}.html">
+        <img class="previz-image" src={{imageName}}.{{imageFormat}}>
+      </a>
+    </div>
+    </body>
+    </html>`;
+
+  const exportTemplate = exportArboardsWithTemplate ( context.selection, template );
+
   if (exportTemplate) {
     [doc showMessage: "📱 Mobile Previz"];
   }

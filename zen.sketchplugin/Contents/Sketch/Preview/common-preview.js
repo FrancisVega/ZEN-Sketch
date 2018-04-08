@@ -40,7 +40,7 @@ const exportArboardsWithTemplate = ( artboards, template ) => {
 
   // Artboard
   finalSelection.slice().filter(ab => ab.class() == "MSArtboardGroup").sort(sortByHorizontalPosition)
-    .map(function( artboard, idx, array ){
+    .map(function( artboard, idx, array ) {
       const artboardHeight = artboard.frame().height();
       const artboardWidth = artboard.frame().width();
       const currentArtboard = artboard;
@@ -53,100 +53,21 @@ const exportArboardsWithTemplate = ( artboards, template ) => {
       }
 
       const htmlName = idx == 0 ? "previz.html" : "previz" + idx + ".html"
-      const pngName = htmlName.split(".html")[0];
+      const imageName = htmlName.split(".html")[0];
 
       // Export
-      const exportImageFilePath = path + "/" + pngName;
+      const exportImageFilePath = path + "/" + imageName;
       exportSlice( context.document, getSlice(currentArtboard), exportImageFilePath );
 
-      let contentTemplate;
-      if ( template == "desktop" ) {
-        contentTemplate = `
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>Zen Previz - ${htmlName}</title>
-          <style>
-            * { padding:0; margin:0; }
-            .previz-image { width: 100%; }
-            @media (min-width: ${artboardWidth}px) {
-              .previz-image {
-                display: block;
-                margin: 0 auto;
-                width: ${artboardWidth}px;
-                height: ${artboardHeight}px;
-              }
-            }
-            </style>
-        </head>
-        <body>
-        <div class="previz">
-          <a href="previz${next}.html">
-            <img class="previz-image" src=${pngName}.${getSlice(currentArtboard).format()}>
-          </a>
-        </div>
-        </body>
-        </html>`;
-      }
+      const contentTemplate = template
+        .replace(/{{htmlName}}/g, htmlName)
+        .replace(/{{artboardWidth}}/g, artboardWidth + "px")
+        .replace(/{{artboardHeight}}/g, artboardHeight + "px")
+        .replace(/{{next}}/g, next)
+        .replace(/{{imageName}}/g, imageName)
+        .replace(/{{imageFormat}}/g, getSlice(currentArtboard).format())
 
-      if (template == "mobile") {
-        contentTemplate = `<!DOCTYPE html>
-          <html>
-          <head>
-            <title>Zen Previz - ${pngName}</title>
-            <style>
-              .img {
-              }
-              * {
-                padding:0;
-                margin:0;
-              }
-              .previz-image {
-                width: 100%;
-                margin:0 auto;
-              }
-            </style>
-          </head>
-          <body>
-          <div class="img">
-            <a href="previz${next}.html">
-              <img class="previz-image" src=${pngName}.${getSlice(currentArtboard).format()}>
-            </a>
-          </div>
-          </body>
-          </html>`;
-      }
-
-      if (template == "simple") {
-        contentTemplate = `<!DOCTYPE html>
-          <html>
-          <head>
-            <title>Zen Previz - ${pngName}</title>
-            <style>
-              * {
-                padding:0;
-                margin:0;
-              }
-              .previz {
-                display: flex;
-              }
-              .previz-image {
-                width: ${artboardWidth}px;
-                height: ${artboardHeight}px;
-              }
-              </style>
-          </head>
-          <body>
-          <div class="previz">
-            <a href="previz${next}.html">
-              <img class="previz-image" src=${pngName}.${getSlice(currentArtboard).format()}>
-            </a>
-          </div>
-          </body>
-          </html>`;
-      }
-
-      writeFile(path + "/" + htmlName, contentTemplate);
+      writeFile(`${path}/${htmlName}`, contentTemplate);
 
     }) // End Map
 
