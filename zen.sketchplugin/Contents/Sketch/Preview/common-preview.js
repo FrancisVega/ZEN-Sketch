@@ -21,10 +21,19 @@ const exportSlice = (doc, slice, filename) => {
   doc.saveArtboardOrSlice_toFile(slice, filename + "." + slice.format());
 }
 
+// Copy to clipboard
+function copyToPasteboard ( string ) {
+  const pasteboard = NSPasteboard.generalPasteboard();
+  pasteboard.clearContents();
+  pasteboard.setString_forType( NSMutableString.stringWithString( string ), NSPasteboardTypeString );
+}
+
 const exportArboardsWithTemplate = ( artboards, template ) => {
 
   const previzFolder = "/.previz";
   const path = NSHomeDirectory() + previzFolder;
+  copyToPasteboard(`${path}/previz.html` );
+
 
   let finalSelection;
   if (artboards.length == 1) {
